@@ -1,0 +1,11 @@
+Atur ukuran web browser menjadi 80-90 %
+Nama Kelompok :
+1. Michael Ggoland 71210793
+2. Michael Fidef Natalino 71210727
+3. Kezia Trifena Kurniani 71210715
+
+Pembagian Tugas :
+
+* Konseptual Design awal bagian isi : Goland
+* Penambahan bagian login : Fidef dan Goland
+* Design bagian tiap rujukan : kezia dan Fidef

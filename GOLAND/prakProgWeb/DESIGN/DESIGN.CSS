@@ -1,0 +1,188 @@
+body{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin: 0;
+    border: 0;
+    /* background-image: url(../ukd.jpg); */
+	  background-size: cover;
+}
+.kegiatan{font-size: 8px;}
+
+.hari {
+    font-weight: bold;
+    background-color: lightyellow;
+    padding: 10px; vertical-align: middle; 
+}
+.tgl, td {vertical-align: top;height: 25px;}
+
+table,tr,td{
+    border: solid 1px;
+    font-size: 15px;
+    border-collapse: collapse;
+}
+.kegiatan{
+  border-radius: 10px; 
+  /* box-sizing: border-box; */
+  font-size: 11px; 
+  border: 1px solid black;
+  width: 30px;
+  z-index: 100;
+
+}
+
+.kegiatan:hover{background-color: aqua;}
+.biasa{background-color: #f6ff00;}
+.sedang{background-color: #ff8000;}
+.penting{background-color: #ff0000;}
+
+table{
+  margin-top: 80px;
+  background-color: #decccc;
+  margin-left: 30%;
+  margin-bottom: 90px;
+  opacity: 90%;
+  /* width: auto; */
+}
+
+td:hover{
+  background: #f3f1f1;
+  transition: 0.5s all ease;
+
+}
+td{
+    text-align: center;
+    width: 100px;
+    height: 80px;
+    /* height: 80px; */
+}
+
+.bulan{
+
+  width: 100%;
+  font-size: 30px;
+  font-weight: bold;
+  word-spacing: 10px;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  position: relative;
+  top: 25px;
+  right: 5em;
+}
+
+.round{
+  border-radius: 50%;
+  text-decoration: none;
+  display: inline-block;
+  padding:5px 10px;
+  color: black;
+  font-size: 35px;
+  border: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1 ;
+}
+
+.round:hover{
+  background-color: #ddd;
+  color: black;
+}
+
+.previous{
+  position: relative;
+  transform: translateX(-525%);
+}
+
+.next{
+  position: relative;
+  transform: translateX(-170%);
+}
+
+.plus{
+  position: relative;
+  transform: translateX(700%);
+}
+
+
+.Feb{
+    background-color: white;
+}
+
+.calender{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  width: 100%;
+  height: 60px;
+  background-color: pink;
+  padding-top: 0px;
+  text-align: center;
+  position: fixed;
+  top: 0;
+}
+
+footer{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: lightpink;
+    width: 100%;
+    height: 65px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    z-index: 10;
+}
+footer p{
+  padding-top: 20px;
+  text-align: center;
+}
+
+
+/*sidebar pada calender*/
+*{
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar {
+    position: fixed;
+    left: 0px;
+    width: 250px;
+    height: 100%;
+    background: #767475;
+    transition: all .5s ease;
+    z-index: 100;
+    opacity: 90%;
+  }
+  .sidebar header {
+    font-size: 22px;
+    color: white;
+    line-height: 70px;
+    text-align: center;
+    background: #3a383bc1;
+    user-select: none;
+  }
+  .sidebar ul a{
+    display: block;
+    height: 100%;
+    width: 100%;
+    line-height: 65px;
+    font-size: 20px;
+    color: white;
+    padding-left: 40px;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+    border-top: 1px solid rgba(255,255,255,.1);
+    transition: .4s;
+    list-style: none;
+    text-decoration: none;
+  }
+  ul li:hover a{
+    padding-left: 50px;
+  }
+  .sidebar ul a i{
+    margin-right: 16px;
+  }
+
+  section{
+    /* background: url(bg.jpeg) no-repeat; */
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    transition: all .5s;
+    margin-left: -250px;
+  }
