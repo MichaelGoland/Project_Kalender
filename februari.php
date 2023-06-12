@@ -1,9 +1,6 @@
 <?php
+include 'koneksi.php';
 session_start();
-if(strlen($_SESSION['email']) == 0){
-    header("location: login.php");
- }  
-
 ?>
 
 <!DOCTYPE html>
@@ -18,14 +15,13 @@ if(strlen($_SESSION['email']) == 0){
 </head>
 <body>
     <div class="sidebar">
-        <header>Kalender</header>
+        <header>Welcome <?php echo $_COOKIE["nama"]; ?></header>
         <ul>
             <li><a href="#"><i class="fas"></i>Profile</a></li>
               <li><a href="event.php"><i class="fas"></i>Events</a></li>
               <li><a href="#"><i class="fas"></i>About</a></li>
               <li><a href="add.php"><i class="far"></i>Service</a></li>
               <li><a href="login.php"><i class="fas"></i>Log Out</a></li>
-              <a href="isi.html" class="round plus">+</a>
         </ul>
     </div>
     <header class="calender">

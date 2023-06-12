@@ -2,6 +2,29 @@
 // kode disini
 // $conn = mysqli_connect("localhost", "root", "", "kalender_fidef") or die("Koneksi ke DB gagal");
 include "koneksi.php";
+$id = 0;
+if($_GET){
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM isi WHERE id='".$_GET['id']."'";
+    $result = mysqli_query($conn, $sql);
+    if(mysqli_num_rows($result)>0){
+        $row=mysqli_fetch_assoc($result);
+        $oldid = $row["id"];
+        $oldket = $row["keterangan"];
+        $oldtgl_mulai = $row["tgl_mulai"];
+        $oldtgl_selesai = $row["tgl_selesai"];
+        $oldwkt_mulai = $row["wkt_mulai"];
+        $oldwkt_selesai = $row["wkt_selesai"];
+        $oldlevel_Kepentingan = $row["level_Kepentingan"];
+        $olddurasi = $row["durasi"];
+        $oldlokasi = $row["lokasi"];
+        $oldgambar_kegiatan = $row["gambar_kegiatan"];
+    }
+    else {
+        echo "Data yang hendak diedit tidak ada.";
+    }
+    //mysqli_close($conn);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,35 +42,35 @@ include "koneksi.php";
         <h1 class="button"><a href="februari.php"><img src="https://cdn-icons-png.flaticon.com/512/60/60817.png" alt="home" width="50"></a></h1>  
     </div>
 <body>
-    <form action="add.php" method= "post" enctype="multipart/form-data">
+    <form action="proses.php" method= "post" enctype="multipart/form-data">
         <div>
-            <h3>To do List: Kerja</h3>
+            <h3>To do List: </h3>
             <table>
                 <tr>
+                    <td><label for="keterangan">Nama Agenda </label></td>
+                    <td>: <input type="text" name="keterangan" id="keterangan" value="<?php if($id != 0){echo $oldket;}?>"required></td>
+                </tr>
+                <tr>
                     <td><label for="tglMulaiID">Tanggal Mulai </label></td>
-                    <td>: <input type="date" name="tgl_mulai" id="tglMulaiID"></td>
-                    <td><input type="time" name="wkt_mulai" id="wktMulaiID"></td>
+                    <td>: <input type="date" name="tgl_mulai" id="tglMulaiID" value="<?php if($id != 0){echo $oldtgl_mulai;}?>" required></td>
+                    <td><input type="time" name="wkt_mulai" id="wktMulaiID" value="<?php if($id != 0){echo $oldwkt_mulai;}?>" required></td>
                 </tr>
                 <tr>
                     <td><label for="tglSlsID">Tanggal Selesai </label></td>
-                    <td>: <input type="date" name="tgl_selesai" id="tglSlsID"></td>
-                    <td><input type="time" name="wkt_selesai" id="wktSlsID"></td>
+                    <td>: <input type="date" name="tgl_selesai" id="tglSlsID" value="<?php if($id != 0){echo $oldtgl_selesai;}?>" required></td>
+                    <td><input type="time" name="wkt_selesai" id="wktSlsID" value="<?php if($id != 0){echo $oldwkt_selesai;}?>" required></td>
                 </tr>
                 <tr>
                     <td><label for="levelID">Level Kepentingan </label> </td>
-                    <td>: <select name="level" id="levelID">
-                        <option value="0">Biasa</option>
-                        <option value="1">Penting</option>
-                        <option value="2">Sangat Penting</option>
+                    <td>: <select name="level_Kepentingan" id="levelID">
+                        <option value="Biasa" <?php if($id != 0 &&  $oldlevel_Kepentingan == "Biasa"){echo "selected" ;}?>>Biasa </option>
+                        <option value="Penting" <?php if($id != 0 &&  $oldlevel_Kepentingan == "Penting"){echo "selected" ;}?>>Penting</option>
+                        <option value="Sangat Penting" <?php if($id != 0 &&  $oldlevel_Kepentingan == "Sangat Penting"){echo "selected" ;}?>>Sangat Penting</option>
                     </select></td>
                 </tr>
-                <!-- <tr>
-                    <td><label for="">Durasi: </label></td>
-                    <td>: <input type="time" name="durasi" id="durasiID"></td>
-                </tr> -->
                 <tr>
                     <td><label for="lokasiID">Lokasi </label></td>
-                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5"></textarea></td>
+                    <td colspan="2"><textarea name="lokasi" id="lokasiID" cols="25" rows="5" required> <?php if($id != 0){echo $oldlokasi ;}?> </textarea></td>
                     <td></td>
                 </tr>
                 <tr>
@@ -57,50 +80,13 @@ include "koneksi.php";
                 </tr>
                 <tr>
                     <td></td>
-                    <td><input type="submit" value="SimpanAA" name="GOLAND">
+                    <td><input type="submit" value="Simpan" name="GOLAND">
                         <input type="reset" value="Reset"></td>
                 </tr>
+                <input type="hidden" name="id" value="<?php if($id != 0){echo $id;}?>" />
             </table>
         </div>
     </form>
-    <?php
-     session_start();  
-     if(strlen($_SESSION['email']) == 0){
-        header("location: login.php");
-     }
-
-
-if(isset($_POST["GOLAND"])){
-    $tglMulai = $_POST['tgl_mulai'];
-    $wktMulai = $_POST['wkt_mulai'];
-    $tglSelesai = $_POST['tgl_selesai'];
-    $wktSelesai = $_POST['wkt_selesai'];
-    $levelKepentingan = $_POST['level'];
-    $lokasi = $_POST['lokasi'];
-
-    $uploadGambar = "images/" .$_FILES['gambar_kegiatan']['name'];
-    move_uploaded_file($_FILES['gambar_kegiatan']['tmp_name'], $uploadGambar);
-
-    $waktu_1 = strtotime($wktMulai);
-    $waktu_2 = strtotime($wktSelesai);
-
-    $durasi = ($waktu_2-$waktu_1)-1;
-    $real_durasi = date("H", $durasi);
-
-    $sql = "INSERT INTO isi (tgl_mulai, wkt_mulai, tgl_selesai, wkt_selesai, level_kepentingan, durasi, lokasi, gambar_kegiatan) 
-            VALUES ('$tglMulai', '$wktMulai', '$tglSelesai', '$wktSelesai', '$levelKepentingan', '$real_durasi', '$lokasi', '$uploadGambar')";
-
-    $uhuy = mysqli_query($conn, $sql);
-    if($uhuy){
-        echo "berhasil";
-    } else {
-        echo "error message: " . mysqli_error($conn);
-    }
-}
-
-?>
-
-
 </body>
 <footer>
     <p><b>By: Kezia Trifena - Michael Fidef - Michael Goland</b></p>

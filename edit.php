@@ -12,13 +12,16 @@
             echo $row["id"];
             echo $row['tgl_mulai'];
             // Tampilkan data lainnya sesuai dengan kolom yang diinginkan
-        }
-
-    
-        
-        
+        } 
     }
-
-
-
 ?>
+
+
+
+
+
+
+
+
+
+

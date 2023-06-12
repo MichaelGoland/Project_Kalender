@@ -1,5 +1,3 @@
 <?php
-
-$conn = mysqli_connect("localhost", "root", "", "anjeng") or die("Koneksi ke DB gagal");
-
+$conn = mysqli_connect("localhost", "root", "", "kalender_fidef") or die("Koneksi ke DB gagal");
 ?>
